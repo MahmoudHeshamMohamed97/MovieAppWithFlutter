@@ -1,0 +1,61 @@
+body: Column(
+        children: <Widget>[
+          Image.asset(widget.obj.imgURL ,fit: BoxFit.fitWidth,),
+
+          Text(widget.obj.name),
+
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: <Widget>[
+                Icon(Icons.favorite,
+                  color: Colors.red,
+                  size: 10.0,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 2.0,right: 10.0),
+                  child: Text(widget.obj.rate.toString()),
+                ),
+               Text(widget.obj.date),
+              ],
+            ),
+          ),
+
+          Text(widget.obj.description),
+
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: widget.obj.tags.map((String data){
+                return FlatButton(
+                  child: Text(data), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0),side: BorderSide(color: Colors.red)), padding: EdgeInsets.only(right: 5.0),
+                );
+              } ).toList(),
+            ),
+          ),
+
+          Text('Similar Movies',style: TextStyle(color: Colors.white,fontSize: 20),),
+
+          ListView.builder(
+            itemCount: widget.myList.length,
+              itemBuilder: (context, int i){
+              return Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Row(children: <Widget>[
+                  Card(
+                    child: Column(
+                      children: <Widget>[
+                        Image.asset(widget.myList[i].imgURL),
+                        Text(widget.myList[i].name),
+                      ],
+                    ),
+                  ),
+                ],
+                ),
+              );
+          }
+          )
+
+
+        ],
+      ),
